@@ -1,3 +1,2 @@
-✨[doyouwannagooutwithme.com](http://doyouwannagooutwithme.com) 
+✨[wemerufesdate.com](https://zengaffi.github.io/wemerufesdate/index.html) 
 
-A website to invite your lover for a date 🥰
