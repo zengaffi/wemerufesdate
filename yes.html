@@ -1,18 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="./yes_style.css">
-        
-    </head> 
-    <body>
-        <div class="container">
-            <div >
-                <h1 class = "header_text">Yeeeyyyy!!</h1>
-            </div>
-            <div class="gif_container">
-                <img src="https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif" alt="Cute animated illustration">
-            </div>
+<head>
+    <link rel="stylesheet" href="./yes_style.css">
+</head> 
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Yeyyyy!!!</h1>
         </div>
-       
-    </body> 
+        <div class="gif_container">
+            <img src="https://media.tenor.com/K2mSt6g87fwAAAAi/cutesheep-dancingsheep.gif" alt="Cute animated illustration">
+        </div>
+    </div>
+    <div class="button"></div>
+
+    <div id="overlay"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(createNewButton, 1000); // Wait for 1 second and then create the new button
+        });
+
+        function createButterfly() {
+            const butterfly = document.createElement('img');
+            butterfly.src = 'https://media.tenor.com/pQZ0uVs1uv8AAAAi/butterfly-yellow.gif';
+            butterfly.style.position = 'absolute';
+            butterfly.style.left = Math.random() * window.innerWidth + 'px';
+            butterfly.style.top = Math.random() * window.innerHeight + 'px';
+            butterfly.style.width = Math.random() * 50 + 20 + 'px';
+
+            document.body.appendChild(butterfly);
+
+            const directionX = Math.random() > 0.5 ? 1 : -1;
+            const directionY = Math.random() > 0.5 ? 1 : -1;
+
+            const animation = butterfly.animate([
+                { transform: 'translate(0, 0)' },
+                { transform: `translate(${directionX * window.innerWidth}px, ${directionY * window.innerHeight}px)` }
+            ], {
+                duration: 5000,
+                fill: 'forwards'
+            });
+
+            animation.onfinish = () => {
+            document.body.removeChild(butterfly);
+            document.getElementById('overlay').style.opacity = 1; // Start fading in the overlay
+            const backbutton = document.createElement('button');
+            backbutton.className = 'btn';
+            backbutton.innerText = 'Home';
+            backbutton.onclick = function () {
+                window.location.href = 'index.html';
+            };
+            document.getElementById('overlay').appendChild(backbutton); // Append the backbutton to the overlay
+            document.getElementById('overlay').style.pointerEvents = 'auto'; // Enable pointer events for the overlay
+        };
+        }
+
+        document.getElementById('yeyButton').addEventListener('click', createButterfly);
+
+        function createNewButton() {
+            const newButton = document.createElement('button');
+            newButton.className = 'btn';
+            newButton.innerText = "Let's gooo!";
+            newButton.id = 'yeyButton';
+            newButton.onclick = function () {
+                for (let i = 0; i < 100; i++) {
+                    createButterfly();
+                }
+            };
+
+            const buttonContainer = document.querySelector('.container');
+            buttonContainer.appendChild(newButton);
+
+            const overlay = document.createElement('div');
+            overlay.id = 'overlay';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            document.body.appendChild(overlay);
+        }
+    </script>
+</body>
 </html>
